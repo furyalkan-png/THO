@@ -3,220 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THO Esports | Official Brawl Stars Roster</title>
+    <title>THO Esports | Official Brawl Stars Roster Website</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
     <style>
+        /* -------------------------------------------------------------------------- */
+        /* 1. ROOT VARIABLES & GLOBAL STYLES                                          */
+        /* -------------------------------------------------------------------------- */
         :root {
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --text-main: #ffffff;
+            --bg-darker: #050709;
+            --bg-main: #0b0c10;
+            --card-bg: #151b24;
+            --card-border: #232d3a;
+            --text-pure: #ffffff;
+            --text-gray: #a0aec0;
+            --text-dark-gray: #4a5568;
+            
+            /* Supercell / THO Neon Brand Colors */
             --tho-blue: #0055ff;
             --tho-red: #ff1100;
             --brawl-gold: #fcc419;
+            --brawl-purple: #8e44ad;
+            
+            /* Animation timings */
+            --transition-speed: 0.4s;
         }
 
+        /* Smooth scroll behavior across the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset and base setup */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
+            user-select: none; /* Prevents text selection for a cleaner app-like feel */
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-main);
+            color: var(--text-pure);
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 20% 30%, rgba(0, 85, 255, 0.15) 0%, transparent 40%),
-                              radial-gradient(circle at 80% 70%, rgba(255, 17, 0, 0.15) 0%, transparent 40%);
+            line-height: 1.6;
+            
+            /* Professional Supercell/Brawl Stars themed ambient background gradient illumination */
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(0, 85, 255, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 85% 65%, rgba(255, 17, 0, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(252, 196, 25, 0.05) 0%, transparent 35%);
+            background-attachment: fixed;
         }
 
-        /* Header / Üst Menü */
+        /* Scrollbar customizing for high-end look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--tho-blue), var(--tho-red));
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brawl-gold);
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 2. HEADER & NAVIGATION STYLING                                             */
+        /* -------------------------------------------------------------------------- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(11, 12, 16, 0.95);
+            background: rgba(5, 7, 9, 0.96);
             border-bottom: 3px solid var(--brawl-gold);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo-area h1 {
-            font-weight: 900;
-            font-size: 28px;
+            font-family: 'Black Ops One', system-ui;
+            font-size: 30px;
             letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--tho-blue), var(--tho-red));
+            background: linear-gradient(45deg, var(--tho-blue) 30%, var(--tho-red) 70%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 25px;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: var(--text-main);
+            color: var(--text-pure);
             text-decoration: none;
             font-weight: 700;
-            transition: 0.3s;
+            transition: var(--transition-speed);
             text-transform: uppercase;
             font-size: 14px;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brawl-gold);
+            transition: var(--transition-speed);
         }
 
         .nav-links a:hover {
             color: var(--brawl-gold);
         }
 
-        /* Hero / Roster Banner Alanı */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 3. HERO & BANNER AREA                                                      */
+        /* -------------------------------------------------------------------------- */
         .hero {
             text-align: center;
-            padding: 60px 20px;
+            padding: 70px 20px;
+            position: relative;
         }
 
         .hero h2 {
-            font-size: 42px;
+            font-family: 'Black Ops One', system-ui;
+            font-size: 55px;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-pure);
+            text-shadow: 3px 3px 0px var(--tho-blue), -3px -3px 0px var(--tho-red);
         }
 
         .hero p {
-            color: #888;
-            font-size: 18px;
-            margin-bottom: 30px;
+            color: var(--text-gray);
+            font-size: 19px;
+            margin-bottom: 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .roster-banner-container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             border: 4px solid var(--brawl-gold);
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+            background: #111;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .roster-banner-container:hover {
+            transform: scale(1.01);
         }
 
         .roster-banner-container img {
             width: 100%;
             display: block;
+            object-fit: cover;
         }
 
-        /* Düzen ve Başlıklar */
+        /* -------------------------------------------------------------------------- */
+        /* 4. MAIN LAYOUT AND SECTION TITLES                                          */
+        /* -------------------------------------------------------------------------- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 38px;
             font-weight: 900;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            position: relative;
+            letter-spacing: 3px;
+            color: var(--text-pure);
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--brawl-gold);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--tho-blue), var(--brawl-gold), var(--tho-red));
+            margin: 15px auto 0 auto;
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(252, 196, 25, 0.5);
         }
 
-        /* Kartların Yan Yana Dizilimi */
+        /* Grid Framework for Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
-        /* Oyuncu Kartı Tasarımı */
+        /* -------------------------------------------------------------------------- */
+        /* 5. ESPORTS PLAYER CARDS STYLING                                            */
+        /* -------------------------------------------------------------------------- */
         .player-card {
             background: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
-            border: 2px solid #2f3b4c;
-            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid var(--card-border);
+            transition: all var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
+        /* Hover actions to give responsive gaming reaction */
         .player-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
             border-color: var(--brawl-gold);
-            box-shadow: 0 10px 25px rgba(252, 196, 25, 0.3);
+            box-shadow: 0 15px 35px rgba(252, 196, 25, 0.25);
         }
 
         .player-img-container {
-            background: linear-gradient(135deg, #151b24 0%, #0b0c10 100%);
-            padding: 30px 20px;
-            height: 240px;
+            background: linear-gradient(135deg, #1d2633 0%, #050709 100%);
+            padding: 40px 20px;
+            height: 270px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            border-bottom: 2px solid var(--card-border);
         }
 
         .player-card img {
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
+            transition: transform var(--transition-speed) ease;
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.6));
         }
 
+        .player-card:hover .player-img-container img {
+            transform: scale(1.08) rotate(2deg);
+        }
+
+        /* Role Badges inside cards */
         .role-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--brawl-gold);
-            color: #000;
-            padding: 5px 12px;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #fcc419 0%, #f39c12 100%);
+            color: #000000;
+            padding: 6px 16px;
             font-size: 11px;
             font-weight: 900;
-            border-radius: 20px;
+            border-radius: 30px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(252, 196, 25, 0.4);
         }
 
         .sub-badge {
-            background: #718096;
-            color: #fff;
+            background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
+        /* Information Details inside cards */
         .player-info {
-            padding: 25px 20px;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(21, 27, 36, 1) 0%, rgba(11, 12, 16, 1) 100%);
         }
 
         .player-name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            color: var(--text-pure);
+            transition: color var(--transition-speed);
+        }
+
+        .player-card:hover .player-name {
+            color: var(--brawl-gold);
         }
 
         .player-country {
-            font-size: 14px;
-            color: #a0aec0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            color: var(--text-gray);
             font-weight: 700;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .player-country i {
+            color: var(--brawl-gold);
         }
 
         .click-hint {
             font-size: 11px;
             color: var(--brawl-gold);
-            margin-top: 10px;
+            margin-top: 15px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            opacity: 0.7;
+            transition: opacity var(--transition-speed);
         }
 
-        /* POPUP (MODAL) PENCERESİ */
+        .player-card:hover .click-hint {
+            opacity: 1;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 6. ADVANCED INTERACTIVE MODAL STYLING (POPUP SYSTEM)                       */
+        /* -------------------------------------------------------------------------- */
         .modal {
             display: none;
             position: fixed;
@@ -225,11 +369,12 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(3, 4, 6, 0.92);
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.35s ease;
+            backdrop-filter: blur(8px);
         }
 
         .modal.show {
@@ -238,90 +383,176 @@
         }
 
         .modal-content {
-            background: #151b24;
+            background: linear-gradient(135deg, #151b24 0%, #0b0c10 100%);
             border: 3px solid var(--brawl-gold);
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 450px;
+            padding: 40px;
+            border-radius: 28px;
+            width: 92%;
+            max-width: 500px;
             text-align: center;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            transform: scale(0.7);
-            transition: transform 0.3s ease;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(252, 196, 25, 0.1);
+            transform: scale(0.6) translateY(50px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .modal.show .modal-content {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #fff;
-            font-size: 30px;
+            top: 20px;
+            right: 25px;
+            color: var(--text-gray);
+            font-size: 36px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: var(--transition-speed);
+            line-height: 1;
         }
 
         .close-btn:hover {
             color: var(--tho-red);
+            transform: rotate(90deg);
         }
 
         .modal-img-container {
-            background: #0b0c10;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #2f3b4c;
+            background: radial-gradient(circle, #202b3a 0%, #050709 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 2px solid var(--card-border);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
         }
 
         .modal-img-container img {
-            max-height: 200px;
+            max-height: 220px;
+            max-width: 100%;
             object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.7));
         }
 
         .modal-name {
-            font-size: 32px;
+            font-family: 'Black Ops One', system-ui;
+            font-size: 36px;
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            color: var(--text-main);
+            margin-bottom: 15px;
+            color: var(--text-pure);
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
         }
 
         .modal-details {
-            font-size: 16px;
-            color: #a0aec0;
+            font-size: 15px;
+            color: var(--text-gray);
             line-height: 1.8;
-            background: #1f2833;
-            padding: 15px;
-            border-radius: 8px;
+            background: rgba(5, 7, 9, 0.6);
+            padding: 20px 25px;
+            border-radius: 16px;
             text-align: left;
+            border: 1px solid var(--card-border);
+        }
+
+        .modal-details p {
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            padding-bottom: 6px;
+        }
+
+        .modal-details p:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .modal-details strong {
             color: var(--brawl-gold);
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            display: inline-block;
+            width: 100px;
         }
 
-        /* Footer */
+        .modal-desc-box {
+            margin-top: 15px;
+            border-top: 2px dashed var(--card-border);
+            padding-top: 15px;
+            color: var(--text-pure);
+            font-style: italic;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 7. FOOTER AND BRANDING DISCLAIMER                                         */
+        /* -------------------------------------------------------------------------- */
         footer {
-            background: #060709;
+            background: #030406;
             text-align: center;
-            padding: 40px 20px;
-            border-top: 2px solid #1f2833;
-            color: #666;
-            font-size: 13px;
+            padding: 50px 20px;
+            border-top: 3px solid var(--card-border);
+            color: #556270;
+            font-size: 14px;
+            position: relative;
+        }
+
+        footer p strong {
+            color: var(--text-pure);
+            letter-spacing: 1px;
+        }
+
+        .footer-logo {
+            font-family: 'Black Ops One', system-ui;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-gray);
+            text-transform: uppercase;
         }
 
         .supercell-disclaimer {
             font-size: 11px;
-            margin-top: 15px;
-            max-width: 600px;
+            margin-top: 20px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: #4a5568;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 15px;
+        }
+
+        /* -------------------------------------------------------------------------- */
+        /* 8. RESPONSIVE DESIGN BREAKPOINTS (MOBILE FRIENDLY)                         */
+        /* -------------------------------------------------------------------------- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 4%;
+            }
+
+            .hero h2 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .modal-content {
+                padding: 25px;
+            }
+
+            .modal-name {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
@@ -329,31 +560,190 @@
 
     <header>
         <div class="logo-area">
-            <h1>THO ESPORTS</h1>
+            <h1>THO Esports</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#main-roster">Main Roster</a></li>
-            <li><a href="#substitutes">Substitutes</a></li>
+            <li><a href="#home-section">Home</a></li>
+            <li><a href="#main-roster-section">Main Roster</a></li>
+            <li><a href="#substitutes-section">Substitutes</a></li>
         </ul>
     </header>
 
-    <section class="hero" id="home">
+    <section class="hero" id="home-section">
         <h2>Turkish Home</h2>
-        <p>Official Brawl Stars Competitive Roster</p>
+        <p>Official Brawl Stars Professional Competitive Roster</p>
         <div class="roster-banner-container">
-            <img src="images/roster.png" alt="THO Brawl Stars Roster">
+            <img src="images/roster.png" alt="THO Brawl Stars Official Roster Card">
         </div>
     </section>
 
-    <section class="container" id="main-roster">
+    <main class="container" id="main-roster-section">
         <h3 class="section-title">Main Roster</h3>
         <div class="grid">
             
-            <div class="player-card" onclick="openModal('Frat', 'images/frat.png', 'Starter', 'Turkey 🇹🇷', 'Main lineup player representing Turkey with exceptional skills.')">
+            <div class="player-card" onclick="openModal('Frat', 'images/frat.png', 'Starter / Captain', 'Turkey 🇹🇷', 'Frat is the strategic mechanical mastermind representing Turkey. Known for making game-winning plays under extreme pressure in global drafts.')">
                 <div class="player-img-container">
                     <span class="role-badge">Starter</span>
-                    <img src="images/frat.png" alt="Frat">
+                    <img src="images/frat.png" alt="THO Frat Profile Artwork">
                 </div>
                 <div class="player-info">
-                    <div
+                    <div class="player-name">Frat</div>
+                    <div class="player-country">
+                        <i class="fa-solid fa-location-dot"></i> Turkey
+                    </div>
+                    <div class="click-hint">Click for Profile Data</div>
+                </div>
+            </div>
+
+            <div class="player-card" onclick="openModal('Fabi', 'images/fabi.png', 'Starter', 'Germany 🇩🇪', 'Fabi is a dominant lane controller hailing from Germany. His flawless lanes positionings and incredible aggression control make him irreplaceable.')">
+                <div class="player-img-container">
+                    <span class="role-badge">Starter</span>
+                    <img src="images/fabi.png" alt="THO Fabi Profile Artwork">
+                </div>
+                <div class="player-info">
+                    <div class="player-name">Fabi</div>
+                    <div class="player-country">
+                        <i class="fa-solid fa-location-dot"></i> Germany
+                    </div>
+                    <div class="click-hint">Click for Profile Data</div>
+                </div>
+            </div>
+
+            <div class="player-card" onclick="openModal('Alfa', 'images/alfa.png', 'Starter', 'Italy 🇮🇹', 'Alfa is an elite powerhouse representing Italy. He is globally feared for his precise accuracy and aggressive brawler mechanics.')">
+                <div class="player-img-container">
+                    <span class="role-badge">Starter</span>
+                    <img src="images/alfa.png" alt="THO Alfa Profile Artwork">
+                </div>
+                <div class="player-info">
+                    <div class="player-name">Alfa</div>
+                    <div class="player-country">
+                        <i class="fa-solid fa-location-dot"></i> Italy
+                    </div>
+                    <div class="click-hint">Click for Profile Data</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="container" id="substitutes-section">
+        <h3 class="section-title">Substitutes</h3>
+        <div class="grid">
+            
+            <div class="player-card" onclick="openModal('Destro', 'images/destro.png', 'Substitute', 'Spain 🇪🇸', 'Destro is the highly versatile secret weapon representing Spain. Capable of filling any composition role instantly and changing game layouts.')">
+                <div class="player-img-container">
+                    <span class="role-badge sub-badge">Substitute</span>
+                    <img src="images/destro.png" alt="THO Destro Profile Artwork">
+                </div>
+                <div class="player-info">
+                    <div class="player-name">Destro</div>
+                    <div class="player-country">
+                        <i class="fa-solid fa-location-dot"></i> Spain
+                    </div>
+                    <div class="click-hint">Click for Profile Data</div>
+                </div>
+            </div>
+
+            <div class="player-card" onclick="openModal('Agentekit Kevin', 'images/agentekitkevin.png', 'Substitute / Flex', 'Italy 🇮🇹', 'Agentekit Kevin is the premium tactical shield from Italy. Provides massive backup data, securing the roster lines against any opponent.')">
+                <div class="player-img-container">
+                    <span class="role-badge sub-badge">Substitute</span>
+                    <img src="images/agentekitkevin.png" alt="THO Agentekit Kevin Profile Artwork">
+                </div>
+                <div class="player-info">
+                    <div class="player-name">Agentekit Kevin</div>
+                    <div class="player-country">
+                        <i class="fa-solid fa-location-dot"></i> Italy
+                    </div>
+                    <div class="click-hint">Click for Profile Data</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="playerModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(null)">&times;</span>
+            
+            <div class="modal-img-container">
+                <img id="modalImg" src="" alt="Active Player Expanded Card Graphic">
+            </div>
+            
+            <div id="modalName" class="modal-name">Player Name</div>
+            
+            <div class="modal-details">
+                <p><strong>Team Role:</strong> <span id="modalRole">N/A</span></p>
+                <p><strong>Country:</strong> <span id="modalCountry">N/A</span></p>
+                <p><strong>Region:</strong> EMEA Competitive Arena</p>
+                <p><strong>Licence:</strong> Official Pro Tier Contract</p>
+                
+                <div id="modalDesc" class="modal-desc-box">
+                    Player description loaded dynamic.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Opens the player information popup modal and injects dynamic content.
+         * @param {string} name - The competitive alias of the player.
+         * @param {string} imgSrc - Relative path to the character file image.
+         * @param {string} role - Tactical role inside the squad configuration.
+         * @param {string} country - Country origin string with flag indicator.
+         * @param {string} description - Extensive bio text information regarding the player.
+         */
+        function openModal(name, imgSrc, role, country, description) {
+            const modal = document.getElementById('playerModal');
+            
+            // Injecting text parameters directly safely into HTML layout elements
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalRole').innerText = role;
+            document.getElementById('modalCountry').innerText = country;
+            document.getElementById('modalDesc').innerText = description;
+            
+            // Enable flex container state display
+            modal.style.display = 'flex';
+            
+            // Asynchronous timeout delay execution loop triggers clean animation state transitions
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 15);
+        }
+
+        /**
+         * Closes the active interactive profile popup display window with a clean fade structure out.
+         * @param {Object} event - Captured click event data used to determine bounds.
+         */
+        function closeModal(event) {
+            const modal = document.getElementById('playerModal');
+            
+            // Remove visualization show opacity markers classes
+            modal.classList.remove('show');
+            
+            // Delay structural display termination execution until style transition rules finish natively
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 350);
+        }
+
+        // Global Event Keyboard mapping system to close active viewports via Escape Key press
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal(null);
+            }
+        });
+    </script>
+
+    <footer>
+        <div class="footer-logo">THO ESPORTS</div>
+        <p>&copy; 2026 <strong>Turkish Home Team</strong>. Made with dedication for Brawl Stars Pro Scene. All Rights Reserved.</p>
+        
+        <div class="supercell-disclaimer">
+            Disclaimer: This competitive fan tracking portal platform is completely unofficial and entirely fan-made for community esports engagement. It operates independently and holds no structural attachment, funding endorsement, or formal sponsorship validation directly from Supercell. All related character assets, Brawl Stars branding elements, artwork designs, and game title property rights belong entirely to Supercell.
+        </div>
+    </footer>
+
+</body>
+</html>
