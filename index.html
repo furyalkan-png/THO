@@ -148,7 +148,7 @@
             border: 2px solid #2f3b4c;
             transition: all 0.3s ease;
             text-align: center;
-            cursor: pointer; /* Üzerine gelince tıklanabilir el işareti çıkar */
+            cursor: pointer;
         }
 
         .player-card:hover {
@@ -216,9 +216,9 @@
             letter-spacing: 1px;
         }
 
-        /* POPUP (MODAL) PENCERESİ SİZLERİ */
+        /* POPUP (MODAL) PENCERESİ */
         .modal {
-            display: none; /* Başlangıçta gizli */
+            display: none;
             position: fixed;
             z-index: 2000;
             left: 0;
@@ -356,127 +356,4 @@
                     <img src="images/frat.png" alt="Frat">
                 </div>
                 <div class="player-info">
-                    <div class="player-name">Frat</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> Turkey</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-            <div class="player-card" onclick="openModal('Fabi', 'images/fabi.png', 'Starter', 'Germany 🇩🇪', 'Professional German player bringing tactics and raw power to the team.')">
-                <div class="player-img-container">
-                    <span class="role-badge">Starter</span>
-                    <img src="images/fabi.png" alt="Fabi">
-                </div>
-                <div class="player-info">
-                    <div class="player-name">Fabi</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> Germany</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-            <div class="player-card" onclick="openModal('Alfa', 'images/alfa.png', 'Starter', 'Italy 🇮🇹', 'Italian powerhouse executing critical moves in competitive draft.')">
-                <div class="player-img-container">
-                    <span class="role-badge">Starter</span>
-                    <img src="images/alfa.png" alt="Alfa">
-                </div>
-                <div class="player-info">
-                    <div class="player-name">Alfa</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> Italy</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="container" id="substitutes">
-        <h3 class="section-title">Substitutes</h3>
-        <div class="grid">
-            
-            <div class="player-card" onclick="openModal('Destro', 'images/destro.png', 'Substitute', 'Spain 🇪🇸', 'Spanish substitute player ready to dominate the arena when called.')">
-                <div class="player-img-container">
-                    <span class="role-badge sub-badge">Substitute</span>
-                    <img src="images/destro.png" alt="Destro">
-                </div>
-                <div class="player-info">
-                    <div class="player-name">Destro</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> Spain</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-            <div class="player-card" onclick="openModal('Agentekit', 'images/agentekit.png', 'Substitute', 'International 🌍', 'Strategic reserve player providing clutch gameplay mechanics.')">
-                <div class="player-img-container">
-                    <span class="role-badge sub-badge">Substitute</span>
-                    <img src="images/agentekit.png" alt="Agentekit">
-                </div>
-                <div class="player-info">
-                    <div class="player-name">Agentekit</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> International</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-            <div class="player-card" onclick="openModal('Kevin', 'images/alfa.png', 'Substitute', 'Italy 🇮🇹', 'Talented Italian substitute securing the backlines of THO.')">
-                <div class="player-img-container">
-                    <span class="role-badge sub-badge">Substitute</span>
-                    <img src="images/alfa.png" style="opacity: 0.4; filter: grayscale(1);" alt="Kevin">
-                </div>
-                <div class="player-info">
-                    <div class="player-name">Kevin</div>
-                    <div class="player-country"><i class="fa-solid fa-location-dot"></i> Italy</div>
-                    <div class="click-hint">Click for Info</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <div id="playerModal" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal(null)">&times;</span>
-            <div class="modal-img-container">
-                <img id="modalImg" src="" alt="Player Image">
-            </div>
-            <div id="modalName" class="modal-name">Player Name</div>
-            <div class="modal-details">
-                <p><strong>Role:</strong> <span id="modalRole"></span></p>
-                <p><strong>Country:</strong> <span id="modalCountry"></span></p>
-                <p><strong>Status:</strong> Active Pro Player</p>
-                <p style="margin-top: 10px; border-top: 1px solid #2f3b4c; padding-top: 10px;" id="modalDesc"></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openModal(name, imgSrc, role, country, description) {
-            const modal = document.getElementById('playerModal');
-            document.getElementById('modalName').innerText = name;
-            document.getElementById('modalImg').src = imgSrc;
-            document.getElementById('modalRole').innerText = role;
-            document.getElementById('modalCountry').innerText = country;
-            document.getElementById('modalDesc').innerText = description;
-            
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-        }
-
-        function closeModal(event) {
-            // Eğer dış siyah alana veya X butonuna basılırsa kapatır
-            const modal = document.getElementById('playerModal');
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-        }
-    </script>
-
-    <footer>
-        <p>&copy; 2026 <strong>THO Esports (Turkish Home)</strong>. All Rights Reserved.</p>
-        <p class="supercell-disclaimer">This website is a fan-made project for esports purposes. This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy.</p>
-    </footer>
-
-</body>
-</html>
+                    <div
